@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Check docstrings and type hints on src/ save",
+      "trigger": "PostFileSave",
+      "description": "Check that every function in the saved src/ file has a docstring, parameter type hints, and a return type hint. Reports missing items with line context.",
+      "matcher": "src[\\\\/].*\\.py$",
+      "action": {
+        "type": "command",
+        "command": ".venv\\Scripts\\python.exe scripts\\check_docstrings.py",
+        "timeout": 30
+      }
+    }
+  ]
+}

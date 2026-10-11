@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run pytest on src/ save",
+      "trigger": "PostFileSave",
+      "description": "Run the full pytest suite whenever a file in src/ is saved. Fails fast on the first broken test and prints a short traceback.",
+      "matcher": "src[\\\\/].*\\.py$",
+      "action": {
+        "type": "command",
+        "command": ".venv\\Scripts\\python.exe -m pytest tests/ -x -q --tb=short 2>&1 | tail -30 && echo \"✅ All tests passed.\" || echo \"❌ Tests failed — see output above.\"",
+        "timeout": 120
+      }
+    }
+  ]
+}

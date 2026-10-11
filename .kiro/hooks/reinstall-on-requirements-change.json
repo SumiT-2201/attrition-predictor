@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Remind to reinstall on requirements.txt change",
+      "trigger": "PostFileSave",
+      "description": "When requirements.txt is saved, remind the user to reinstall packages into the venv.",
+      "matcher": "requirements\\.txt$",
+      "action": {
+        "type": "agent",
+        "prompt": "The file `requirements.txt` was just saved. Remind the user to reinstall dependencies by running the following command in their terminal:\n\n```\n.venv\\Scripts\\pip.exe install -r requirements.txt\n```\n\nAlso mention: if they added a new package, they should pin the version and run `pip freeze > requirements.txt` after installing to keep the file in sync. Keep the message brief and actionable."
+      }
+    }
+  ]
+}
